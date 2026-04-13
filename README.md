@@ -6,5 +6,7 @@ Para o projeto funcionar corretamente:
   - Rode o Python.
 
 Demora um tempo para extrair tudo, mas acompanhe os avisos pelo terminal. 
-O sistema está configurado para não repetir downloads de jogos que já existem na sua pasta local, economizando banda e tempo.
+
+O sistema está configurado para não repetir downloads de jogos que já existem na sua pasta local.
+
 Durante o processamento, o sistema ignora automaticamente arquivos vazios ou de jogos futuros.
