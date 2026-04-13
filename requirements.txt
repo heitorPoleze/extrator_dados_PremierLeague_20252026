@@ -1,0 +1,4 @@
+soccerdata
+pandas
+tqdm
+glob
