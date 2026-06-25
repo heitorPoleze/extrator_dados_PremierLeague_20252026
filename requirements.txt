@@ -1,4 +1,6 @@
 soccerdata
 pandas
 tqdm
-glob
+matplotlib
+seaborn
+numpy

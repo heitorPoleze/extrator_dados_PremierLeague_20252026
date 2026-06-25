@@ -5,4 +5,4 @@ from Estatistica import Estatistica
 extracao = Extracao("ENG-Premier League", 2526)
 estatisticas = Estatistica(extracao.csv)
 
-print(estatisticas.rankingArtilharia())
+print(estatisticas.rankingArtilharia())     

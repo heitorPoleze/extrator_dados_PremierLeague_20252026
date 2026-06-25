@@ -14,7 +14,7 @@ class Extracao:
         self.path_base = r"C:\Users\heito\soccerdata\data\WhoScored"
         self.csv = "dataset.csv"
         self.path_matches = os.path.join(self.path_base, "matches")
-        self.patch_events = os.path.join(self.path_base, "events", f"{self.liga}_{self.temporada}")
+        self.path_events = os.path.join(self.path_base, "events", f"{self.liga}_{self.temporada}")
 
 
     def salvarWebscrapeWhoScored(self):
@@ -22,7 +22,7 @@ class Extracao:
         if not os.path.exists(self.path_matches):
             qtd_jsons = 0
         else: 
-            arquivos_cache = glob(os.path.join(self.patch_events, "*.json"))
+            arquivos_cache = glob(os.path.join(self.path_events, "*.json"))
             qtd_jsons = len(arquivos_cache)
         
         if(qtd_jsons < qtd_arquivos_minimos):
@@ -30,7 +30,7 @@ class Extracao:
             wsdata = sd.WhoScored(leagues=self.liga, seasons=[self.temporada], headless=True)
             wsdata.read_events()
         else:
-            print("Cachê suficiente. Começando extração do Json")
+            print(f"Cachê suficiente. {qtd_jsons} arquivos encontrados. Começando extração do Json")
 
     #Pega os jsons salvos e transforma-os em tabelas
     def extrairJsonPraTabelas(self):
@@ -46,7 +46,7 @@ class Extracao:
                             lista_de_partidas.extend(torneio['matches'])
         df_matches = pd.DataFrame(lista_de_partidas)
     
-        files_events = glob(os.path.join(self.patch_events, "*.json"))
+        files_events = glob(os.path.join(self.path_events, "*.json"))
         lista_de_eventos = []
         player_map = {}
 

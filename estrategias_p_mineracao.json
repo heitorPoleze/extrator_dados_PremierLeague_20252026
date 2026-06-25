@@ -1,0 +1,104 @@
+[
+    {
+        "classificacao": "Classificação Binária",
+        "objetivo": "Expected Goals (xG) - Prever a probabilidade de um chute (isShot = True) virar gol (golValido)",
+        "fontes": [
+            {
+                "titulo": "Predicting goal probabilities with improved xG models using event sequences in association football",
+                "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0312278",
+                "descricao": "Precisar gols a partir do chute e de seus 2 eventos anteriores.",
+                "algoritmos_usados": [
+                    "Random Forest"
+                ],
+                "variaveis_utilizadas": [
+                    "Distância e ângulo entre o chute e gol",
+                    "Duração de cada evento analisado no contexto",
+                    "Tipo de ação (foi com pé ou não)"
+                ]
+            },
+            {
+                "titulo": "Improving model performance and demonstrating value",
+                "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0282295",
+                "descricao": "Eficácia ofensiva a partir do chute e das variáveis psicológicas.",
+                "algoritmos_usados": [
+                    "XGBoost"
+                ],
+                "variaveis_utilizadas": [
+                    "Diferença de gols entre as 2 equipes",
+                    "Jogo fora ou dentro de casa",
+                    "Tempo do chute (se é ao final da partida, de cada tempo etc)",
+                    "Duração da posse de bola da equipe",
+                    "Quantidade de chutes do jogador tentados no dia em relação às outras partidas"
+                ]
+            }
+        ]
+    },
+    {
+        "classificacao": "Clustering",
+        "objetivo": "Traduzir em mapa de calor de campo como é o pipeline de gol por equipe",
+
+        "fontes": [ 
+            {
+                "titulo": "Clustering and Profiling Analysis for FIFA Football Player using K-Means -> USAR",
+                "url": "https://notebooklm.google.com/notebook/2fad70e8-92b5-4ac3-8c9b-6309511203b7",
+                "descricao": "PCA para reduzir a complexidade dos dados e K-Means para agrupar jogadores com base em estatísticas e características físicas [1, 2]. Na sua adaptação, agruparemos pelo volume real de jogo extraído dos eventos.",
+                "algoritmos_usados": [
+                    "K-Means",
+                    "Principal Component Analysis (PCA)",
+                    "Elbow Method "
+                ],
+                "variaveis_utilizadas": [
+                    "Agrupamento base ('playerName')",
+                    "Frequência e volume de ações táticas criadas por jogador ('type.displayName')",
+                    "Eficácia das ações do jogador calculada pela taxa de sucesso ('outcomeType.displayName')",
+                    "Métricas diretas de impacto ofensivo ('isGoal', 'isShot', 'isAssistencia')",
+                    "Posição média através das coordenadas de origem das ações ('x', 'y')"
+                ]
+            },
+            {
+                "titulo": "Clustering Football Game Situations via Deep Representation Learning",
+                "url": "https://notebooklm.google.com/notebook/2fad70e8-92b5-4ac3-8c9b-6309511203b7",
+                "descricao": "Ameaça Esperada (Expected Threat - xT) e Valor da Ação- Medir matematicamente a probabilidade de uma ação de progressão da bola resultar em gol, avaliando o perigo criado pelas movimentações das equipes",
+                "algoritmos_usados": [
+                    "K-Means"
+                ],
+                "variaveis_utilizadas": [
+                    "Divisão do campo em setores usando as coordenadas de início da ação ('x', 'y')",
+                    "Definição de zonas de onde a bola progride usando coordenadas de destino ('endX', 'endY')",
+                    "Filtragem de ações de progressão e sucesso ('type.displayName') ('outcomeType.displayName')",
+                    "Resultados finais da posse para treinar a probabilidade de acerto (Chutes que levam a gols válidos)"
+                ]
+            }
+        ]
+    },
+    {
+        "classificacao": "Associação",
+        "objetivo": "Descobrir regras como: Se jogador A faz um passe E jogador B faz um cruzamento, acontece algo.",
+        "modelos_sugeridos": [
+            "FP-Growth"
+        ],
+        "fontes": [
+            {
+                "titulo": "Application of association rules to ball possessions in professional mens football",
+                "url": "https://notebooklm.google.com/notebook/cf81cb75-ccdf-4d77-9cdc-94e0a8528f99",
+                "descricao": "algoritmo Apriori para gerar regras de associação que relacionam o contexto da posse de bola (zona, tempo, intenção) ao seu resultado (Move outcome), utilizando métricas de suporte e confiança para encontrar as táticas mais eficazes",
+                "variaveis_utilizadas": [
+                    "Agrupamento de eventos para calcular o tempo total de posse",
+                    "Classificação espacial das posses (defesa/ataque)",
+                    "Avaliação do sucesso final da posse",
+                    "Contexto do placar no momento da posse"
+                ]
+            },
+            {
+                "titulo": "Learning Theory Analysis for Association Rules and Sequential Event Prediction",
+                "url": "https://notebooklm.google.com/notebook/cf81cb75-ccdf-4d77-9cdc-94e0a8528f99",
+                "descricao": "Prever a próxima ação em uma sequência de jogadas",
+                "variaveis_utilizadas": [
+                    "Histórico sequencial de ações do time ",
+                    "Variável alvo para prever a próxima ação (gol foi true?, assistência foi true?, passo foi completado com sucesso?)",
+                    "Ação passada e resultado para prever a próxima"
+                ]
+            }
+        ]
+    }
+]
