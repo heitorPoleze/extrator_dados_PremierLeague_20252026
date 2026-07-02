@@ -4,3 +4,4 @@ tqdm
 matplotlib
 seaborn
 numpy
+scikit-learn

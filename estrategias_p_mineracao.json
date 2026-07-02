@@ -35,8 +35,6 @@
     },
     {
         "classificacao": "Clustering",
-        "objetivo": "Traduzir em mapa de calor de campo como é o pipeline de gol por equipe",
-
         "fontes": [ 
             {
                 "titulo": "Clustering and Profiling Analysis for FIFA Football Player using K-Means -> USAR",
